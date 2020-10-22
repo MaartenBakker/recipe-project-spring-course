@@ -4,7 +4,8 @@ import com.maartenmusic.recipeproject.domain.Recipe;
 import com.maartenmusic.recipeproject.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class RecipeServiceDB implements RecipeService {
@@ -25,7 +26,9 @@ public class RecipeServiceDB implements RecipeService {
     }
 
     @Override
-    public List<Recipe> findAll() {
-        return (List<Recipe>) recipeRepository.findAll();
+    public Set<Recipe> findAll() {
+        Set<Recipe> recipeSet = new HashSet<>();
+        recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
+        return recipeSet;
     }
 }

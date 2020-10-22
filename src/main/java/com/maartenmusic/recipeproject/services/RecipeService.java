@@ -2,7 +2,7 @@ package com.maartenmusic.recipeproject.services;
 
 import com.maartenmusic.recipeproject.domain.Recipe;
 
-import java.util.List;
+import java.util.Set;
 
 public interface RecipeService {
 
@@ -10,6 +10,6 @@ public interface RecipeService {
 
     void save(Recipe recipe);
 
-    List<Recipe> findAll();
+    Set<Recipe> findAll();
 
 }

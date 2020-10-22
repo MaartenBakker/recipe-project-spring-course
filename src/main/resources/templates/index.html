@@ -6,11 +6,13 @@
 </head>
 <body>
 <h1>My Recipes</h1>
-<tr th:each="recipe: ${recipes}">
-    <td th:text="${recipe.description}"></td>
-    <td th:text="${recipe.cookTime}"></td>
-    <td th:text="${recipe.difficulty}"></td>
-</tr>
+<table>
+    <tr th:each="recipe: ${recipes}">
+        <td th:text="${recipe.description}"></td>
+        <td th:text="${recipe.cookTime}"></td>
+        <td th:text="${recipe.difficulty}"></td>
+    </tr>
+</table>
 
 
 

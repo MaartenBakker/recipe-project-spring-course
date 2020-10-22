@@ -74,11 +74,9 @@ public class DataLoader implements CommandLineRunner {
         UnitOfMeasure uomPinch = getUnitOfMeasure("Pinch");
         UnitOfMeasure uomTablespoon = getUnitOfMeasure("Tablespoon");
 
-        Ingredient avocados = new Ingredient("Avocados", new BigDecimal(2), uomEach, perfectGuacamole );
-        Ingredient salt = new Ingredient("Salt", new BigDecimal(1/4), uomPinch, perfectGuacamole );
-        Ingredient limeJuice = new Ingredient("Lime Juice", new BigDecimal(1),uomTablespoon, perfectGuacamole );
-
-        perfectGuacamole.setIngredients(Stream.of(avocados, salt, limeJuice).collect(Collectors.toSet()));
+        perfectGuacamole.addIngredient(new Ingredient("Avocados", new BigDecimal(2), uomEach, perfectGuacamole))
+                .addIngredient(new Ingredient("Salt", new BigDecimal(1/4), uomPinch, perfectGuacamole))
+                .addIngredient(new Ingredient("Lime Juice", new BigDecimal(1),uomTablespoon, perfectGuacamole));
 
         perfectGuacamole.setDirections("1 Cut the avocado, remove flesh: Cut the avocados in half. Remove the pit. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl.\n" +
                 "\n" +
@@ -101,7 +99,6 @@ public class DataLoader implements CommandLineRunner {
         Notes perfectGuacamoleNotes = new Notes();
         perfectGuacamoleNotes.setRecipeNotes("Quick guacamole: For a very quick guacamole just take a 1/4 cup of salsa and mix it in with your mashed avocados.\n" +
                 "Don’t have enough avocados? To extend a limited supply of avocados, add either sour cream or cottage cheese to your guacamole dip. Purists may be horrified, but so what? It tastes great.");
-        perfectGuacamoleNotes.setRecipe(perfectGuacamole);
         perfectGuacamole.setNotes(perfectGuacamoleNotes);
 
 
