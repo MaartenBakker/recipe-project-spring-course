@@ -11,6 +11,13 @@ public class UnitOfMeasure {
 
     private String description;
 
+    public UnitOfMeasure() {
+    }
+
+    public UnitOfMeasure(String description) {
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }

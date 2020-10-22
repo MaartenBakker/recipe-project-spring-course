@@ -6,4 +6,6 @@ public interface UnitOfMeasureService {
 
     UnitOfMeasure findByDescription(String description);
 
+    void save(UnitOfMeasure unitOfMeasure);
+
 }

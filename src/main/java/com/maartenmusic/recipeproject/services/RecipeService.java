@@ -8,7 +8,7 @@ public interface RecipeService {
 
     Recipe findByDescription(String description);
 
-    void saveRecipe(Recipe recipe);
+    void save(Recipe recipe);
 
     List<Recipe> findAll();
 

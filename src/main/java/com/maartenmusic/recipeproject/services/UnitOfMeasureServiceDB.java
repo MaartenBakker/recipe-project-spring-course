@@ -17,4 +17,9 @@ public class UnitOfMeasureServiceDB implements UnitOfMeasureService {
     public UnitOfMeasure findByDescription(String description) {
         return unitOfMeasureRepository.findByDescription(description).get();
     }
+
+    @Override
+    public void save(UnitOfMeasure unitOfMeasure) {
+        unitOfMeasureRepository.save(unitOfMeasure);
+    }
 }

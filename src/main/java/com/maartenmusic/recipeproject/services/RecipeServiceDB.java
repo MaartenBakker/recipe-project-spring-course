@@ -20,7 +20,7 @@ public class RecipeServiceDB implements RecipeService {
     }
 
     @Override
-    public void saveRecipe(Recipe recipe) {
+    public void save(Recipe recipe) {
         recipeRepository.save(recipe);
     }
 
