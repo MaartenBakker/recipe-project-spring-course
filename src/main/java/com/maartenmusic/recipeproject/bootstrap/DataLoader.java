@@ -8,8 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -48,11 +46,12 @@ public class DataLoader implements CommandLineRunner {
         Category category;
         try {
             category = categoryService.findByDescription(description);
-            category.getRecipes().add(recipe);
+
         } catch (Exception e) {
+            System.out.println("inside Catch block");
+
             category = new Category(description);
             categoryService.save(category);
-            category.getRecipes().add(recipe);
         }
 
         return category;
@@ -61,7 +60,6 @@ public class DataLoader implements CommandLineRunner {
     private void getRecipes() {
         Recipe perfectGuacamole = new Recipe();
         Category mexican = getCategory("Mexican", perfectGuacamole);
-
         perfectGuacamole.getCategories().add(mexican);
 
         perfectGuacamole.setCookTime(10);
