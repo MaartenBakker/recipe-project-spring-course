@@ -48,9 +48,11 @@ public class DataLoader implements CommandLineRunner {
         Category category;
         try {
             category = categoryService.findByDescription(description);
+            category.getRecipes().add(recipe);
         } catch (Exception e) {
             category = new Category(description);
             categoryService.save(category);
+            category.getRecipes().add(recipe);
         }
 
         return category;
@@ -103,6 +105,8 @@ public class DataLoader implements CommandLineRunner {
                 "Don’t have enough avocados? To extend a limited supply of avocados, add either sour cream or cottage cheese to your guacamole dip. Purists may be horrified, but so what? It tastes great.");
         perfectGuacamoleNotes.setRecipe(perfectGuacamole);
         perfectGuacamole.setNotes(perfectGuacamoleNotes);
+
+
 
         recipeService.save(perfectGuacamole);
     }
