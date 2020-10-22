@@ -74,9 +74,9 @@ public class DataLoader implements CommandLineRunner {
         UnitOfMeasure uomPinch = getUnitOfMeasure("Pinch");
         UnitOfMeasure uomTablespoon = getUnitOfMeasure("Tablespoon");
 
-        perfectGuacamole.addIngredient(new Ingredient("Avocados", new BigDecimal(2), uomEach, perfectGuacamole))
-                .addIngredient(new Ingredient("Salt", new BigDecimal(1/4), uomPinch, perfectGuacamole))
-                .addIngredient(new Ingredient("Lime Juice", new BigDecimal(1),uomTablespoon, perfectGuacamole));
+        perfectGuacamole.addIngredient(new Ingredient("Avocados", new BigDecimal(2), uomEach))
+                .addIngredient(new Ingredient("Salt", new BigDecimal(1/4), uomPinch))
+                .addIngredient(new Ingredient("Lime Juice", new BigDecimal(1),uomTablespoon));
 
         perfectGuacamole.setDirections("1 Cut the avocado, remove flesh: Cut the avocados in half. Remove the pit. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl.\n" +
                 "\n" +
