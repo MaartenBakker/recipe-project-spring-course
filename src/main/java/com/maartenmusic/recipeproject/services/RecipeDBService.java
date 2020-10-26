@@ -30,6 +30,7 @@ public class RecipeDBService implements RecipeService {
     @Override
     public Set<Recipe> findAll() {
         log.debug("I'm in the RecipeDBService");
+
         Set<Recipe> recipeSet = new HashSet<>();
         recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
         return recipeSet;
