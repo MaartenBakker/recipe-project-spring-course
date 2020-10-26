@@ -4,14 +4,18 @@ import com.maartenmusic.recipeproject.domain.*;
 import com.maartenmusic.recipeproject.services.CategoryService;
 import com.maartenmusic.recipeproject.services.RecipeService;
 import com.maartenmusic.recipeproject.services.UnitOfMeasureService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Slf4j
 @Component
+@Transactional
 public class DataLoader implements CommandLineRunner {
 
     private final CategoryService categoryService;
@@ -27,7 +31,6 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         getRecipes();
-
     }
 
     private UnitOfMeasure getUnitOfMeasure(String description) {
@@ -54,10 +57,13 @@ public class DataLoader implements CommandLineRunner {
             categoryService.save(category);
         }
 
+        category.getRecipes().add(recipe);
+
         return category;
     }
 
     private void getRecipes() {
+        log.debug("Loading bootstrap recipes");
         Recipe perfectGuacamole = new Recipe();
         Category mexican = getCategory("Mexican", perfectGuacamole);
         perfectGuacamole.getCategories().add(mexican);
