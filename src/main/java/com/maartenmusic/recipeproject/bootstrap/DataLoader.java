@@ -15,7 +15,6 @@ import java.util.stream.Stream;
 
 @Slf4j
 @Component
-@Transactional
 public class DataLoader implements CommandLineRunner {
 
     private final CategoryService categoryService;
@@ -29,6 +28,7 @@ public class DataLoader implements CommandLineRunner {
     }
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
         getRecipes();
     }
