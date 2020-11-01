@@ -31,7 +31,7 @@ public class RecipeDBServiceTest {
     }
 
     @Test
-    public void getRecipeByIdTest() {
+    public void findByIdTest() {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
         Optional<Recipe> recipeOptional = Optional.of(recipe);
@@ -59,5 +59,6 @@ public class RecipeDBServiceTest {
 
         assertEquals(1, recipes.size());
         verify(recipeRepository, times(1)).findAll();
+        verify(recipeRepository, never()).findById(anyLong());
     }
 }

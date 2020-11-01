@@ -65,6 +65,8 @@ public class DataLoader implements CommandLineRunner {
         Recipe perfectGuacamole = new Recipe();
         Category mexican = getCategory("Mexican", perfectGuacamole);
         perfectGuacamole.getCategories().add(mexican);
+        Category texan = getCategory("Texan", perfectGuacamole);
+        perfectGuacamole.getCategories().add(texan);
 
         perfectGuacamole.setCookTime(10);
         perfectGuacamole.setPrepTime(10);
