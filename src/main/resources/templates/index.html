@@ -30,6 +30,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Description</th>
+                                <th>View</th>
                             </tr>
                             </thead>
                             <tr th:remove="all">
@@ -41,8 +42,11 @@
                                 <td th:text="${recipe.description}">Tasty Goodness 2</td>
                             </tr>
                             <tr th:each="recipe : ${recipes}">
+                                <!--/*@thymesVar id="recipe" type="com.maartenmusic.recipeproject.domain.Recipe"*/-->
                                 <td th:text="${recipe.id}">123</td>
                                 <td th:text="${recipe.description}">Tasty Goodness 3</td>
+                                <td><a href="#" th:href="@{'/recipe/show' + ${recipe.id}}"
+                                       >view</a></td>
                             </tr>
                         </table>
                     </div>
