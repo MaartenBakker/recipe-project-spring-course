@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RecipeServiceIT {
+public class RecipeDBServiceIT {
 
     public static final String NEW_DESCRIPTION = "New Description";
 
