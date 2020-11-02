@@ -81,7 +81,7 @@ public class DataLoader implements CommandLineRunner {
         UnitOfMeasure uomTablespoon = getUnitOfMeasure("Tablespoon");
 
         perfectGuacamole.addIngredient(new Ingredient("Avocados", new BigDecimal(2), uomEach))
-                .addIngredient(new Ingredient("Salt", new BigDecimal(1/4), uomPinch))
+                .addIngredient(new Ingredient("Salt", new BigDecimal(".25"), uomPinch))
                 .addIngredient(new Ingredient("Lime Juice", new BigDecimal(1),uomTablespoon));
 
         perfectGuacamole.setDirections("1 Cut the avocado, remove flesh: Cut the avocados in half. Remove the pit. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl.\n" +
@@ -127,9 +127,9 @@ public class DataLoader implements CommandLineRunner {
         UnitOfMeasure uomTeaspoon = getUnitOfMeasure("Teaspoon");
         UnitOfMeasure uomCup = getUnitOfMeasure("Cup");
 
-        chickenFriedRice.addIngredient(new Ingredient("Chicken Thighs", new BigDecimal(3/4), uomPound))
+        chickenFriedRice.addIngredient(new Ingredient("Chicken Thighs", new BigDecimal(".75"), uomPound))
                 .addIngredient(new Ingredient("Salt", new BigDecimal(1), uomTeaspoon))
-                .addIngredient(new Ingredient("Yellow Onions", new BigDecimal(2/3), uomCup));
+                .addIngredient(new Ingredient("Yellow Onions", new BigDecimal(".66"), uomCup));
 
         chickenFriedRice.setDirections("1 Prepare the chicken: Chop the chicken into small 1/4-inch to 1/2-inch cubes. Sprinkle 1/2 teaspoon of salt over the chicken and mix to combine. Set the chicken aside for about 10 minutes (I usually use this time to chop all the vegetables).\n" +
                 "\n" +

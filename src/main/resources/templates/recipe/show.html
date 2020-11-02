@@ -95,7 +95,7 @@
                                 <ul th:remove="all-but-first">
                                     <!--/*@thymesVar id="ingredient" type="com.maartenmusic.recipeproject.domain.Ingredient"*/-->
                                     <li th:each=" ingredient : ${recipe.ingredients}"
-                                        th:text="${ingredient.amount.toString()} + ' ' + ${ingredient.uom.description} + ' '
+                                        th:text="${ingredient.amount} + ' ' + ${ingredient.uom.description} + ' '
                                                   + ${ingredient.description}">1 Teaspoon of Sugar</li>
                                     <li>1 Cup of milk</li>
                                     <li>1 Teaspoon of chocolate</li>

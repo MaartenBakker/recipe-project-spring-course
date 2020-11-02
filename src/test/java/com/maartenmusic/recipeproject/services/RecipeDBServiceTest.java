@@ -1,5 +1,7 @@
 package com.maartenmusic.recipeproject.services;
 
+import com.maartenmusic.recipeproject.converters.RecipeCommandToRecipe;
+import com.maartenmusic.recipeproject.converters.RecipeToRecipeCommand;
 import com.maartenmusic.recipeproject.domain.Recipe;
 import com.maartenmusic.recipeproject.repositories.RecipeRepository;
 import org.junit.Before;
@@ -7,7 +9,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -22,12 +23,17 @@ public class RecipeDBServiceTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeDBService(recipeRepository);
+        recipeService = new RecipeDBService(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
@@ -47,7 +53,7 @@ public class RecipeDBServiceTest {
     }
 
     @Test
-    public void findAll() {
+    public void findAllTest() {
 
         Recipe recipe = new Recipe();
         Set<Recipe> recipeData = new HashSet<>();

@@ -1,5 +1,8 @@
 package com.maartenmusic.recipeproject.services;
 
+import com.maartenmusic.recipeproject.commands.RecipeCommand;
+import com.maartenmusic.recipeproject.converters.RecipeCommandToRecipe;
+import com.maartenmusic.recipeproject.converters.RecipeToRecipeCommand;
 import com.maartenmusic.recipeproject.domain.Recipe;
 import com.maartenmusic.recipeproject.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -13,9 +16,13 @@ import java.util.Set;
 @Service
 public class RecipeDBService implements RecipeService {
     private final RecipeRepository recipeRepository;
+    private final RecipeCommandToRecipe recipeCommandToRecipe;
+    private final RecipeToRecipeCommand recipeToRecipeCommand;
 
-    public RecipeDBService(RecipeRepository recipeRepository) {
+    public RecipeDBService(RecipeRepository recipeRepository, RecipeCommandToRecipe recipeCommandToRecipe, RecipeToRecipeCommand recipeToRecipeCommand) {
         this.recipeRepository = recipeRepository;
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
+        this.recipeToRecipeCommand = recipeToRecipeCommand;
     }
 
     @Override
@@ -46,5 +53,14 @@ public class RecipeDBService implements RecipeService {
         }
 
         return recipeOptional.get();
+    }
+
+    @Override
+    public RecipeCommand saveRecipeCommand(RecipeCommand command) {
+        Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
+
+        Recipe savedRecipe = recipeRepository.save(detachedRecipe);
+        log.debug("Saved RecipeId: " + savedRecipe.getId());
+        return recipeToRecipeCommand.convert(savedRecipe);
     }
 }
