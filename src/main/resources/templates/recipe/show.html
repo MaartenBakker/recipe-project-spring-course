@@ -32,12 +32,12 @@
                                 <h5>Categories:</h5>
                             </div>
                             <div class="col-md-9">
-                                <ul>
+                                <ul th:remove="all-but-first">
                                     <!--/*@thymesVar id="category" type="com.maartenmusic.recipeproject.domain.Category"*/-->
-                                    <li th:remove="all">cat one</li>
-                                    <li th:remove="all">cat two</li>
                                     <li th:each="category : ${recipe.categories}"
-                                        th:text="${category.description}">cat three</li>
+                                        th:text="${category.description}">cat one</li>
+                                    <li>cat two</li>
+                                    <li>cat three</li>
                                 </ul>
                             </div>
                         </div>
@@ -92,13 +92,13 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <ul>
+                                <ul th:remove="all-but-first">
                                     <!--/*@thymesVar id="ingredient" type="com.maartenmusic.recipeproject.domain.Ingredient"*/-->
-                                    <li th:remove="all">1 Cup of milk</li>
-                                    <li th:remove="all">1 Teaspoon of chocolate</li>
                                     <li th:each=" ingredient : ${recipe.ingredients}"
                                         th:text="${ingredient.amount.toString()} + ' ' + ${ingredient.uom.description} + ' '
                                                   + ${ingredient.description}">1 Teaspoon of Sugar</li>
+                                    <li>1 Cup of milk</li>
+                                    <li>1 Teaspoon of chocolate</li>
                                 </ul>
                             </div>
                         </div>
