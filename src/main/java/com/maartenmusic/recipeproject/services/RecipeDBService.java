@@ -8,6 +8,7 @@ import com.maartenmusic.recipeproject.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -55,12 +56,15 @@ public class RecipeDBService implements RecipeService {
         return recipeOptional.get();
     }
 
+    @Override
+    @Transactional
     public RecipeCommand findCommandById(Long id) {
-        Recipe recipe =  findById(id);
+        Recipe recipe = findById(id);
         return recipeToRecipeCommand.convert(recipe);
     }
 
     @Override
+    @Transactional
     public RecipeCommand saveRecipeCommand(RecipeCommand command) {
         Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
 
