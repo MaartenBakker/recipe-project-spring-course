@@ -55,6 +55,11 @@ public class RecipeDBService implements RecipeService {
         return recipeOptional.get();
     }
 
+    public RecipeCommand findCommandById(Long id) {
+        Recipe recipe =  findById(id);
+        return recipeToRecipeCommand.convert(recipe);
+    }
+
     @Override
     public RecipeCommand saveRecipeCommand(RecipeCommand command) {
         Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
