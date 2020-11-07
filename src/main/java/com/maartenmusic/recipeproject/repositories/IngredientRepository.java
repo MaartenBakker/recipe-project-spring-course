@@ -1,0 +1,7 @@
+package com.maartenmusic.recipeproject.repositories;
+
+import com.maartenmusic.recipeproject.domain.Ingredient;
+import org.springframework.data.repository.CrudRepository;
+
+public interface IngredientRepository extends CrudRepository<Ingredient, Long> {
+}
