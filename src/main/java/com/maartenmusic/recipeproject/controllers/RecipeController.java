@@ -45,4 +45,15 @@ public class RecipeController {
 
         return "redirect:/recipe/" + savedCommand.getId() + "/show";
     }
+
+    @GetMapping("recipe/{id}/delete")
+    public String deleteRecipe(@PathVariable Long id) {
+        try {
+            recipeService.deleteById(id);
+        } catch (Exception e) {
+            System.out.println("Cannot delete recipe with unknown ID");
+        }
+
+        return "redirect:/";
+    }
 }
