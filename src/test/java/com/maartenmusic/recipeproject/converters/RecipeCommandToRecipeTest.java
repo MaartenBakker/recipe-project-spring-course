@@ -6,10 +6,15 @@ import com.maartenmusic.recipeproject.commands.NotesCommand;
 import com.maartenmusic.recipeproject.commands.RecipeCommand;
 import com.maartenmusic.recipeproject.domain.Difficulty;
 import com.maartenmusic.recipeproject.domain.Recipe;
+import com.maartenmusic.recipeproject.services.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.when;
 
 public class RecipeCommandToRecipeTest {
     public static final Long RECIPE_ID = 1L;
@@ -29,9 +34,10 @@ public class RecipeCommandToRecipeTest {
 
     RecipeCommandToRecipe converter;
 
-
     @Before
     public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+
         converter = new RecipeCommandToRecipe(new CategoryCommandToCategory(),
                 new IngredientCommandToIngredient(new UnitOfMeasureCommandToUnitOfMeasure()),
                 new NotesCommandToNotes());

@@ -6,10 +6,12 @@ import com.maartenmusic.recipeproject.domain.Ingredient;
 import com.maartenmusic.recipeproject.domain.Recipe;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.MockitoAnnotations;
 
 import java.math.BigDecimal;
 
 import static org.junit.Assert.*;
+
 
 public class IngredientCommandToIngredientTest {
 
@@ -21,8 +23,10 @@ public class IngredientCommandToIngredientTest {
 
     IngredientCommandToIngredient converter;
 
+
     @Before
     public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
         converter = new IngredientCommandToIngredient(new UnitOfMeasureCommandToUnitOfMeasure());
     }
 
