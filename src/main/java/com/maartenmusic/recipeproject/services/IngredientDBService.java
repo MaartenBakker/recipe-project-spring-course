@@ -81,7 +81,6 @@ public class IngredientDBService implements IngredientService {
                 Ingredient ingredient = ingredientCommandToIngredient.convert(ingredientCommand);
                 ingredient.setRecipe(recipe);
                 recipe.addIngredient(ingredientCommandToIngredient.convert(ingredientCommand));
-
             }
 
             Recipe savedRecipe = recipeRepository.save(recipe);
@@ -101,7 +100,34 @@ public class IngredientDBService implements IngredientService {
             }
             return ingredientToIngredientCommand.convert(savedIngredientOptional.get());
         }
+    }
 
+    @Override
+    public void deleteById(Long recipeId, Long ingredientId) {
 
+        log.debug("Deleting ingredient: " + recipeId + ":" + ingredientId);
+
+        Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
+
+        if (recipeOptional.isPresent()) {
+            Recipe recipe = recipeOptional.get();
+            log.debug("Found recipe");
+
+            Optional<Ingredient> ingredientOptional = recipe
+                    .getIngredients()
+                    .stream()
+                    .filter(ingredient -> ingredient.getId().equals(ingredientId))
+                    .findFirst();
+
+            if (ingredientOptional.isPresent()) {
+                log.debug("Found ingredient");
+                Ingredient ingredientToDelete = ingredientOptional.get();
+                ingredientToDelete.setRecipe(null);
+                recipe.getIngredients().remove(ingredientToDelete);
+                recipeRepository.save(recipe);
+            }
+        } else {
+            log.debug("Recipe Id not found. Id: " + recipeId);
+        }
     }
 }
