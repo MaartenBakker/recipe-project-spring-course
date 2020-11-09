@@ -1,5 +1,7 @@
 package com.maartenmusic.recipeproject.services;
 
+import com.maartenmusic.recipeproject.converters.IngredientToIngredientCommand;
+import com.maartenmusic.recipeproject.converters.UnitOfMeasureToUnitOfMeasureCommand;
 import com.maartenmusic.recipeproject.domain.UnitOfMeasure;
 import com.maartenmusic.recipeproject.repositories.UnitOfMeasureRepository;
 import org.junit.Before;
@@ -20,6 +22,8 @@ public class UnitOfMeasureDBServiceTest {
     @Mock
     UnitOfMeasureRepository unitOfMeasureRepository;
 
+    UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureToUnitOfMeasureCommand = new UnitOfMeasureToUnitOfMeasureCommand();
+
     private final String DESCRIPTION = "Kilo";
 
     UnitOfMeasure unitOfMeasure;
@@ -29,7 +33,7 @@ public class UnitOfMeasureDBServiceTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        unitOfMeasureService = new UnitOfMeasureDBService(unitOfMeasureRepository);
+        unitOfMeasureService = new UnitOfMeasureDBService(unitOfMeasureRepository, unitOfMeasureToUnitOfMeasureCommand);
 
         unitOfMeasure = new UnitOfMeasure();
         unitOfMeasure.setDescription(DESCRIPTION);

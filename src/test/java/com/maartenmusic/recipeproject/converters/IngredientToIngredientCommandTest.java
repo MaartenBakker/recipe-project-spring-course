@@ -37,7 +37,11 @@ public class IngredientToIngredientCommandTest {
 
     @Test
     public void testEmptyObject() throws Exception {
-        assertNotNull(converter.convert(new Ingredient()));
+        Ingredient ingredient = new Ingredient();
+        Recipe recipe = new Recipe();
+
+        ingredient.setRecipe(recipe);
+        assertNotNull(converter.convert(ingredient));
     }
 
     @Test
