@@ -79,7 +79,7 @@ public class IngredientController {
 
         ingredientService.deleteById(recipeId, ingredientId);
 
-        return "redirect:/recipe/" + recipeId + "/ingredient/list";
+        return "redirect:/recipe/" + recipeId + "/ingredients";
 
     }
 
