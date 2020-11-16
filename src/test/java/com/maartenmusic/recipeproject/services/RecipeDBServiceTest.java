@@ -4,6 +4,7 @@ import com.maartenmusic.recipeproject.commands.RecipeCommand;
 import com.maartenmusic.recipeproject.converters.RecipeCommandToRecipe;
 import com.maartenmusic.recipeproject.converters.RecipeToRecipeCommand;
 import com.maartenmusic.recipeproject.domain.Recipe;
+import com.maartenmusic.recipeproject.exceptions.NotFoundException;
 import com.maartenmusic.recipeproject.repositories.RecipeRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,6 +52,15 @@ public class RecipeDBServiceTest {
         assertEquals(1L, (long) returnedRecipe.getId());
         verify(recipeRepository, times((1))).findById(anyLong());
         verify(recipeRepository, never()).findAll();
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void findByIdNotFoundTest() throws Exception {
+        Optional<Recipe> recipeOptional = Optional.empty();
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe recipeReturned = recipeService.findById(1L);
     }
 
     @Test

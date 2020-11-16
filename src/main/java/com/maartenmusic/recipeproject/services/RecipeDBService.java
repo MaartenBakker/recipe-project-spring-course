@@ -4,6 +4,7 @@ import com.maartenmusic.recipeproject.commands.RecipeCommand;
 import com.maartenmusic.recipeproject.converters.RecipeCommandToRecipe;
 import com.maartenmusic.recipeproject.converters.RecipeToRecipeCommand;
 import com.maartenmusic.recipeproject.domain.Recipe;
+import com.maartenmusic.recipeproject.exceptions.NotFoundException;
 import com.maartenmusic.recipeproject.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,7 @@ public class RecipeDBService implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 
         if (recipeOptional.isEmpty()) {
-            throw new RuntimeException("Cannot find recipe with given id");
+            throw new NotFoundException("Cannot find recipe with given id");
         }
 
         return recipeOptional.get();
